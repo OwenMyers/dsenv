@@ -1,5 +1,8 @@
-FROM tensorflow:latest
+FROM tensorflow/tensorflow:latest
 
+RUN apt-get update && \
+    apt-get install -y git && \
+    sudo apt-get install neovim
 
 ARG ssh_prv_key
 ARG ssh_pub_key
