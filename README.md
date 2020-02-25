@@ -1,8 +1,8 @@
 To build 
 
 ```
-docker build \
-    -t hometap/ds_simulation --build-arg ssh_prv_key="$(cat ~/.ssh/id_rsa)" \
+docker build 
+    -t omyers/dsenv --build-arg ssh_prv_key="$(cat ~/.ssh/id_rsa)" \
     --build-arg ssh_pub_key="$(cat ~/.ssh/id_rsa.pub)"
 ```
 

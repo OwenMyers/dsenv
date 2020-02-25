@@ -17,3 +17,8 @@ RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
     echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub && \
     chmod 600 /root/.ssh/id_rsa && \
     chmod 600 /root/.ssh/id_rsa.pub
+
+RUN mkdir ~/.config && \
+    git clone git://github.com/rafi/vim-config.git ~/.config/nvim && \
+    cd ~/.config/nvim && \
+    make 
