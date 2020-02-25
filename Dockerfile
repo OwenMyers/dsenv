@@ -1,8 +1,9 @@
 FROM tensorflow/tensorflow:latest
 
 RUN apt-get update && \
-    apt-get install -y git && \
-    sudo apt-get install neovim
+    apt-get install -y git neovim
+
+RUN pip install --user PyYAML
 
 ARG ssh_prv_key
 ARG ssh_pub_key
@@ -21,7 +22,10 @@ RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
     chmod 600 /root/.ssh/id_rsa && \
     chmod 600 /root/.ssh/id_rsa.pub
 
+RUN git clone --depth 1 git://github.com/junegunn/fzf.git ~/.fzf && \
+    cd ~/.fzf && ./install
+
 RUN mkdir ~/.config && \
     git clone git://github.com/rafi/vim-config.git ~/.config/nvim && \
     cd ~/.config/nvim && \
-    make 
+    make test
