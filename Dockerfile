@@ -1,14 +1,16 @@
-FROM tensorflow/tensorflow:latest
+FROM tensorflow/tensorflow:nightly
 
 RUN apt-get update && \
     apt-get install -y git ninja-build gettext libtool libtool-bin autoconf \
-    automake cmake g++ pkg-config unzip python3 python3-pip
+    automake cmake g++ pkg-config unzip nodejs npm
 
-RUN pip install --user PyYAML && \
-    pip3 install --user jupyterlab && \
+RUN pip install PyYAML && \
+    pip install jupyterlab==1.2.6 && \
     jupyter labextension install jupyterlab_vim
+    #python3 -m jupyter labextension install jupyterlab_vim
 
-COPY rcfiles/.* ~/
+COPY rcfiles ~/
+COPY scripts ~/scripts/
 
 ARG ssh_prv_key
 ARG ssh_pub_key
