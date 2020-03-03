@@ -1,9 +1,14 @@
 FROM tensorflow/tensorflow:latest
 
 RUN apt-get update && \
-    apt-get install -y git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+    apt-get install -y git ninja-build gettext libtool libtool-bin autoconf \
+    automake cmake g++ pkg-config unzip python3 python3-pip
 
-RUN pip install --user PyYAML
+RUN pip install --user PyYAML && \
+    pip3 install --user jupyterlab && \
+    jupyter labextension install jupyterlab_vim
+
+COPY rcfiles/.* ~/
 
 ARG ssh_prv_key
 ARG ssh_pub_key
