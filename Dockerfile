@@ -9,8 +9,8 @@ RUN pip install PyYAML && \
     jupyter labextension install jupyterlab_vim
     #python3 -m jupyter labextension install jupyterlab_vim
 
-COPY rcfiles ~/
-COPY scripts ~/scripts/
+COPY placeinhome /root/
+COPY scripts /root/scripts/
 
 ARG ssh_prv_key
 ARG ssh_pub_key
@@ -39,3 +39,7 @@ RUN mkdir ~/.config && \
     git clone git://github.com/rafi/vim-config.git ~/.config/nvim && \
     cd ~/.config/nvim && \
     make test && make
+
+RUN rm -rf /root/.ssh
+
+COPY config/local.vim /root/.config/nvim/config/
