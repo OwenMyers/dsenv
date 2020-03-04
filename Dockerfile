@@ -40,6 +40,4 @@ RUN mkdir ~/.config && \
     cd ~/.config/nvim && \
     make test && make
 
-RUN rm -rf /root/.ssh
-
 COPY config/local.vim /root/.config/nvim/config/

@@ -13,8 +13,13 @@ docker build \
     --build-arg ssh_pub_key="$(cat ~/.ssh/id_rsa.pub)" ./
 ```
 
-Important note: the way we are handling the github `ssh` credentials is safe in
-that the credentials will not be found in the image.
+**Important note**: The way we are handling the github `ssh` credentials is not
+safe in that the credentials will be in the built image. This is intentional.
+By allowing credentials in the image we can have a much more practical
+environment to work in. You can save an image and pass it around using `docker
+save ...` and `docker load` to keep and full working environment with you.
+Note that credentials will never be present in the repository itself. The repo
+will be public and absent of sensitive material.
 
 ## To Run
 
