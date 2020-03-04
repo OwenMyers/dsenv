@@ -10,7 +10,7 @@ Then you can build with something like
 ```
 docker build \
     -t omyers/dsenv --build-arg ssh_prv_key="$(cat ~/.ssh/id_rsa)" \
-    --build-arg ssh_pub_key="$(cat ~/.ssh/id_rsa.pub)" ./ \
+    --build-arg ssh_pub_key="$(cat ~/.ssh/id_rsa.pub)" ./
 ```
 
 Important note: the way we are handling the github `ssh` credentials is safe in
