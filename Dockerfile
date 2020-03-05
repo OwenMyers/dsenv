@@ -2,11 +2,11 @@ FROM tensorflow/tensorflow:nightly
 
 RUN apt-get update && \
     apt-get install -y git ninja-build gettext libtool libtool-bin autoconf \
-    automake cmake g++ pkg-config unzip nodejs npm
+    automake cmake g++ pkg-config unzip nodejs npm python3-venv
 
 RUN pip install PyYAML && \
     pip install jupyterlab==1.2.6 && \
-    jupyter labextension install jupyterlab_vim
+    jupyter labextension install jupyterlab_vim neovim vim-vint pycodestyle pyflakes flake8
     #python3 -m jupyter labextension install jupyterlab_vim
 
 COPY placeinhome /root/
@@ -41,3 +41,5 @@ RUN mkdir ~/.config && \
     make test && make
 
 COPY config/local.vim /root/.config/nvim/config/
+
+RUN ln -s /usr/local/bin/python /usr/local/bin/python3 &&

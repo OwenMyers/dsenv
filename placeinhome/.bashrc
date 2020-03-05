@@ -1,6 +1,9 @@
 
 set -o vi
 
+############# PATH ################
+export PATH=$PATH:/root/.local/bin
+
 ############# Docker ##############
 alias dr='docker rm'
 alias ds='docker stop'
