@@ -1,5 +1,8 @@
 FROM tensorflow/tensorflow:nightly
 
+RUN adduser om && \
+    usermod -aG sudo om
+
 RUN apt-get update && \
     apt-get install -y git ninja-build gettext libtool libtool-bin autoconf \
     automake cmake g++ pkg-config unzip nodejs npm python3-venv
@@ -42,4 +45,5 @@ RUN mkdir ~/.config && \
 
 COPY config/local.vim /root/.config/nvim/config/
 
-RUN ln -s /usr/local/bin/python /usr/local/bin/python3 &&
+RUN ln -s /usr/local/bin/python /usr/local/bin/python3 && \
+    npm -g install neovim
