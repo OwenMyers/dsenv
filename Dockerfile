@@ -4,8 +4,21 @@ RUN apt-get update && \
     apt-get install -y git ninja-build gettext libtool libtool-bin autoconf \
     automake cmake g++ pkg-config unzip nodejs npm python3-venv
 
+# Authorize SSH Host
+RUN mkdir -p /root/.ssh && \
+    chmod 0700 /root/.ssh && \
+    ssh-keyscan github.com > /root/.ssh/known_hosts
+
+# Add the keys and set permissions
+RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
+    echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub && \
+    chmod 600 /root/.ssh/id_rsa && \
+    chmod 600 /root/.ssh/id_rsa.pub
+
 RUN git clone git@github.com:neovim/neovim.git && \
-    cd neovim && sudo make CMAKE_BUILD_TYPE=Release && sudo make install
+    cd neovim && \
+    make CMAKE_BUILD_TYPE=Release && \
+    make CMAKE_INSTALL_PREFIX=/usr/local/bin/nvim install && \
 
 #RUN useradd -ms --disabled-password /bin/bash om && \
 RUN adduser om --disabled-password && \
