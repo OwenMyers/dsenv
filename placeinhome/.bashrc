@@ -2,7 +2,7 @@
 set -o vi
 
 ############# PATH ################
-export PATH=$PATH:/root/.local/bin
+export PATH=$PATH:/home/om/.local/bin
 
 ############# Docker ##############
 alias dr='docker rm'
