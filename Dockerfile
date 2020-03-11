@@ -64,12 +64,12 @@ COPY scripts /home/om/scripts/
 #RUN git clone --depth 1 git://github.com/junegunn/fzf.git /home/om/.fzf && \
 #    cd /home/om/.fzf && sudo ./install
 
-RUN mkdir /home/om/.config && \
-    git clone git://github.com/rafi/vim-config.git /home/om/.config/nvim && \
-    cd /home/om/.config/nvim && \
-    make test && make
-
-COPY config/local.vim /home/om/.config/nvim/config/
-
-RUN ln -s /usr/local/bin/python /usr/local/bin/python3 && \
-    npm -g install neovim
+#RUN mkdir /home/om/.config && \
+#    git clone git://github.com/rafi/vim-config.git /home/om/.config/nvim && \
+#    cd /home/om/.config/nvim && \
+#    make test && make
+#
+#COPY config/local.vim /home/om/.config/nvim/config/
+#
+#RUN ln -s /usr/local/bin/python /usr/local/bin/python3 && \
+#    npm -g install neovim
