@@ -6,7 +6,7 @@ ARG ssh_pub_key
 # We need to install sudo because the fzf install script uses it.
 RUN apt-get update && \
     apt-get install -y git ninja-build gettext libtool libtool-bin autoconf \
-    automake cmake g++ pkg-config unzip nodejs npm python3-venv sudo && \
+    automake cmake g++ pkg-config unzip nodejs npm python3-venv sudo vim && \
     rm -rf /var/lib/apt/lists/*
 
 # Authorize SSH Host
@@ -29,15 +29,15 @@ RUN git clone git@github.com:neovim/neovim.git /root/neovim && \
     make CMAKE_INSTALL_PREFIX=/usr/local/bin/nvim install
 
 #RUN useradd -ms --disabled-password /bin/bash om && \
-RUN adduser om --disabled-password && \
+RUN adduser om && \
+    echo 'om:realpass' | chpasswd && \
     usermod -aG sudo om
 USER om
 WORKDIR /home/om/
 ENV PATH="$PATH:/home/om/.local/bin"
 
-RUN pip install PyYAML && \
-    pip install jupyterlab==1.2.6 neovim vim-vint pycodestyle pyflakes flake8 && \
-    jupyter labextension install jupyterlab_vim 
+RUN pip install --user PyYAML
+RUN pip install --user jupyterlab==1.2.6 neovim vim-vint pycodestyle pyflakes flake8
     #python3 -m jupyter labextension install jupyterlab_vim
 
 RUN git config --global user.name "owenmyers" && \
@@ -57,6 +57,7 @@ RUN echo "$ssh_prv_key" > /home/om/.ssh/id_rsa && \
 COPY placeinhome /home/om/
 COPY scripts /home/om/scripts/
 
+RUN jupyter labextension install jupyterlab_vim 
 #RUN chmod 0755 /home/om && \
 #RUN chmod 0644 /home/om/.bashrc && \
 #    chmod 0644 /home/om/.profile
