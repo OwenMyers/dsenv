@@ -24,7 +24,7 @@ will be public and absent of sensitive material.
 ## To Run
 
 ```
-docker run -it --mount type=bind,source="$(pwd)/scripts",target=/root/scripts \
+docker run -u $(id -u):$(id -g) -it --mount type=bind,source="$(pwd)/scripts",target=/root/scripts \
     --mount type=bind,source="$(pwd)/config/local.vim",target=/root/.config/nvim/config/local.vim \
     omyers/dsenv /bin/bash
 ```

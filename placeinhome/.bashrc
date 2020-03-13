@@ -1,5 +1,6 @@
 
 set -o vi
+alias nvim='/root/neovim/build/bin/nvim -c UpdateRemotePlugins'
 
 ############# PATH ################
 export PATH=$PATH:/home/om/.local/bin
