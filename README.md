@@ -28,4 +28,3 @@ docker run -u $(id -u):$(id -g) -it --mount type=bind,source="$(pwd)/scripts",ta
     --mount type=bind,source="$(pwd)/config/local.vim",target=/root/.config/nvim/config/local.vim \
     omyers/dsenv /bin/bash
 ```
-
