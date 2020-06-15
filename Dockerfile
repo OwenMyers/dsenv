@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:nightly
+FROM tensorflow/tensorflow:latest
 
 ARG ssh_prv_key
 ARG ssh_pub_key
